@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	{{ form_start(form, {'attr': {'class': 'form-inline mb-4'}}) }}
+	<div class="input-group mb-2">
+		{{ form_row(form.keyword) }}
+		<div class="input-group-append">
+			<button type="submit" class="btn btn-primary">Szukaj</button>
+		</div>
+	</div>
+	{{ form_end(form) }}
+
+	{% for label, messages in app.flashes %}
+		{% for message in messages %}
+			<div class="alert alert-{{ label }} mt-3">
+				{{ message }}
+			</div>
+		{% endfor %}
+	{% endfor %}
+
+	<h2 class="my-4">Oferty pracy</h2>
+
+	{% if pagination|length > 0 %}
+		<ul class="list-group">
+			{% for jobOffer in pagination %}
+				<li class="list-group-item d-flex justify-content-between align-items-center">
+					<div class="mr-2">
+						<h5>{{ jobOffer.jobTitle }}</h5>
+						<p>{{ jobOffer.jobDescription }}</p>
+					</div>
+					<a href="{{ path('job_offer_apply', {'id': jobOffer.id}) }}" class="btn btn-success ml-auto">Aplikuj</a>
+				</li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<div class="alert alert-warning" role="alert">
+			Brak wyników
+		</div>
+	{% endif %}
+
+	<div class="pagination mt-4">
+		{{ knp_pagination_render(pagination, '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig') }}
+	</div>
+{% endblock %}

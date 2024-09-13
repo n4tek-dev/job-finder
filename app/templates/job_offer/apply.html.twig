@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="container mt-5">
+		<h2 class="mb-4">Aplikacja na ofertę pracy</h2>
+
+		<div class="card mb-4">
+			<div class="card-body">
+				<h5 class="card-title">{{ jobOffer.jobTitle }}</h5>
+				<p class="card-text">{{ jobOffer.jobDescription }}</p>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Twoje dane</h5>
+				<p class="text-muted mb-4">Proszę zweryfikować poprawność danych przed złożeniem aplikacji. Upewnij się, że wszystkie informacje są aktualne i dokładne.</p>
+
+				{{ form_start(form) }}
+
+				{% for field in form %}
+					{% if field.vars.name != 'password' and field.vars.block_prefixes[1] != 'hidden' %}
+						<div class="form-group">
+							{{ form_label(field) }}
+							{{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+							{{ form_errors(field) }}
+						</div>
+					{% else %}
+						{{ form_widget(field) }}
+					{% endif %}
+				{% endfor %}
+
+				<button type="submit" name="apply" class="btn btn-success mt-3">Aplikuj</button>
+
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="container mt-5">
+		<h1 class="mb-4 text-center">Rejestracja</h1>
+		<div class="w-50 mx-auto">
+			{{ form_start(registrationForm, {'attr': {'class': 'form'}}) }}
+			{% for field in registrationForm %}
+				{% if field.vars.block_prefixes[1] != 'hidden' %}
+					<div class="form-group mb-3">
+						{{ form_label(field, null, {'label_attr': {'class': 'form-label'}}) }}
+						{{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+						{{ form_errors(field) }}
+					</div>
+				{% else %}
+					{{ form_widget(field) }}
+				{% endif %}
+			{% endfor %}
+			<button type="submit" name="register" class="btn btn-primary mt-4 w-100">Zarejestruj</button>
+			{{ form_end(registrationForm) }}
+		</div>
+	</div>
+{% endblock %}
