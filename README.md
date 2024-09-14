@@ -9,9 +9,7 @@ git clone https://github.com/n4tek-dev/job-finder.git
 cd job-finder/app
 ```
 
-2. Skonfiguruj plik `.env`:
-
-Skopiuj plik `.env.test` do `.env`:
+2. Skopiuj plik `.env.test` do `.env`:
 
 ```bash
 cp .env.test .env
