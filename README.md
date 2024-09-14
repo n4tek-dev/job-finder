@@ -28,9 +28,9 @@ cd ..
 docker-compose up -d
 ```
 
- 5. Wejdź do kontenera aplikacji:
+5. Wejdź do kontenera aplikacji:
 
-```bash    
+```bash
 docker-compose exec php bash
 ```
 
@@ -39,7 +39,7 @@ docker-compose exec php bash
 ```bash
 php bin/console doctrine:migrations:migrate
 ```
-    
+
 7. Wygeneruj kilka ofert pracy
 
 ```bash
